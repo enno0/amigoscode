@@ -9,7 +9,8 @@ import lombok.ToString;
 @ToString
 
 public class CustomerDto {
-    private String name;
-    private String eamil;
-    private int age;
+    private String name = "kamal";
+    private String eamil = "kamal@ayhaga.m3rfsh";
+    private int age = 25;
+    private int num = 0102;
 }
