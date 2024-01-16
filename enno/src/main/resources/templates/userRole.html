@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>UserRole List</title>
+    <div th:replace="~{/csrf-fragment.html}"></div>
+  </head>
+  <body>
+    <h1>UserRole List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>UserName</th>
+          <th>Role</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <a th:href="@{/Role/Users/add}">Add User</a>
+      <tbody>
+        <!-- Loop through the list of customers and display their information -->
+        <tr th:each="userRole : ${userRole}">
+          <td th:text="${userRole.id}"></td>
+          <td th:text="${userRole.UserName}"></td>
+          <td th:text="${userRole.Role}"></td>
+          <td>
+            <a th:href="@{/Role/Users/update/{id}(id=*{userRole.id})}"
+              >Update</a
+            >
+            <a th:href="@{/Role/Users/delete/{id}(id=*{userRole.id})}"
+              >Delete</a
+            >
+          </td>
+          <!-- Add more columns as needed -->
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

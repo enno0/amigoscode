@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amogoscode.enno.Model.Customer;
 import com.amogoscode.enno.Service.CustomerService;
 
 @Controller
-// @RequestMapping("/customers")
+@RequestMapping("/customers")
 
 public class CustomerController {
 
@@ -34,29 +35,28 @@ public class CustomerController {
         return "customer";
     }
 
-    @GetMapping("/customers/add")
+    @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("customer", new Customer());
         return "add_customer";
     }
 
-    @PostMapping("/customers/add")
+    @PostMapping("/add")
     public String addCustomer(@ModelAttribute Customer customer) {
         // Add validation and error handling if needed
         customerService.addCustomer(customer);
-        return "redirect:/customers";
+        return "redirect:/customers/customers";
     }
 
-    @GetMapping("/customers/update/{id}")
+    @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable int id, Model model) {
-        System.out.printf("done", id);
         Customer customer = customerService.getCustomerById(id)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
         model.addAttribute("customer", customer);
         return "update_customer";
     }
 
-    @PostMapping("/customers/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateCustomer(@PathVariable int id, @ModelAttribute Customer updatedCustomer) {
         Optional<Customer> optionalCustomer = customerService.getCustomerById(id);
 
@@ -69,18 +69,18 @@ public class CustomerController {
             existingCustomer.setNum(updatedCustomer.getNum());
             // Save the updated customer
             customerService.updateCustomer(existingCustomer);
-            return "redirect:/customers";
+            return "redirect:/customers/customers";
         } else {
             // Handle the case where the customer with the given ID is not found
             // You might want to show an error page or redirect to a different page
-            return "redirect:/customers"; // or return an error view
+            return "redirect:/customers/customers"; // or return an error view
         }
     }
 
-    @GetMapping("/customers/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String Delete(@PathVariable int id) {
         customerService.deleteCustomer(id);
-        return "redirect:/customers";
+        return "redirect:/customers/customers";
     }
 
 }

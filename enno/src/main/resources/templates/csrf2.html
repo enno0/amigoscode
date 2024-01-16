@@ -1,0 +1,9 @@
+<!-- csrf2.html -->
+
+<div colspan="2">
+  <input
+    type="hidden"
+    th:name="${_csrf.parameterName}"
+    th:value="${_csrf.token}"
+  />
+</div>

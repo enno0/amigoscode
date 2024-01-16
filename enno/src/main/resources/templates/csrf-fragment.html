@@ -1,0 +1,47 @@
+<!-- csrf-fragment.html -->
+
+<div xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      margin: 0 5px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .container {
+      padding: 20px;
+    }
+  </style>
+  <nav>
+    <a class="nav-link" th:href="@{/logout}">Logout</a>
+    <a class="nav-link" th:href="@{/}">HOME</a>
+  </nav>
+  <nav>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+      <a th:href="@{/customers/customers}">customers</a>
+      <a th:href="@{/M/UserMain}">User</a>
+      <a th:href="@{/M/UserRoleMain}">User&Role</a>
+      <!-- Other content for non-authenticated users -->
+    </div>
+  </nav>
+</div>

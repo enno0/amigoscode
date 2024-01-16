@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Add User</title>
+    <div th:replace="~{/csrf-fragment.html}"></div>
+  </head>
+  <body>
+    <h1>Add User</h1>
+    <form action="/U/users/add" method="post" th:object="${user}">
+      <label>FullName:</label>
+      <input type="text" th:field="*{FullName}" required /><br />
+      <label>UserName:</label>
+      <input type="text" th:field="*{UserName}" required /><br />
+      <label>Password:</label>
+      <input type="password" th:field="*{Password}" required /><br />
+      <div th:replace="/csrf2.html"></div>
+      <button type="submit">Add User</button>
+    </form>
+  </body>
+</html>

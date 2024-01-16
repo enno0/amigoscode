@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Add UserRole</title>
+    <div th:replace="~{/csrf-fragment.html}"></div>
+  </head>
+  <body>
+    <h1>Add UserRole</h1>
+    <form action="/Role/Users/add" method="post" th:object="${userRole}">
+      <label>UserName:</label>
+      <input type="text" th:field="*{UserName}" required /><br />
+      <label>Role:</label>
+      <input type="text" th:field="*{Role}" required /><br />
+      <div th:replace="/csrf2.html"></div>
+
+      <button type="submit">Add User</button>
+    </form>
+  </body>
+</html>

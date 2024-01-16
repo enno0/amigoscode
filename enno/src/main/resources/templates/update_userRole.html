@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Update UserRole</title>
+    <div th:replace="~{/csrf-fragment.html}"></div>
+  </head>
+  <body>
+    <h1>Update UserRole</h1>
+    <form
+      th:action="@{/Role/Users/update/{id}(id=${userRole.id})}"
+      method="post"
+      th:object="${userRole}"
+    >
+      <input type="text" name="id" th:field="*{id}" hidden />
+      <label>UserName:</label>
+      <input type="text" th:field="*{UserName}" required /><br />
+      <label>Role:</label>
+      <input type="text" th:field="*{Role}" required /><br />
+      <div th:replace="/csrf2.html"></div>
+
+      <button type="submit">Update</button>
+    </form>
+  </body>
+</html>

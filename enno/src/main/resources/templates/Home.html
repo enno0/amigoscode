@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Home Page</title>
+    <div th:replace="~{/csrf-fragment.html}"></div>
+  </head>
+  <body>
+    <div class="container"></div>
+    <div sec:authorize="isAuthenticated()">
+      <h1>Welcome to our website, <span sec:authentication="name"></span>!</h1>
+      <p>
+        Your roles are: <span sec:authentication="principal.authorities"></span>
+      </p>
+      <!-- Other authenticated user content -->
+    </div>
+  </body>
+</html>
